@@ -57,7 +57,7 @@
  *  標準のインクルードファイル
  */
 #include <signal.h>
-#include <libkern/OSAtomic.h>
+#include <stdatomic.h>
 
 #include <t_stddef.h>
 
@@ -113,6 +113,6 @@ sil_dly_nse(ulong_t dlytim)
 /*
  *  メモリ同期バリア
  */
-#define TOPPERS_SIL_WRITE_SYNC()	OSMemoryBarrier()
+#define TOPPERS_SIL_WRITE_SYNC()	atomic_thread_fence(memory_order_seq_cst)
 
 #endif /* TOPPERS_TARGET_SIL_H */
