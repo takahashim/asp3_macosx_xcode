@@ -55,6 +55,7 @@
 /*
  *  サンプルプログラム／テストプログラムで使用するCPU例外に関する定義
  */
+#define	SIGINFO					SIGPWR	/* A synonym for SIGPWR */
 #define CPUEXC1					SIGINFO
 #define RAISE_CPU_EXCEPTION		(raise(SIGINFO))
 #define PREPARE_RETURN_CPUEXC

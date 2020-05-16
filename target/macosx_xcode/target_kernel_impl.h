@@ -373,7 +373,7 @@ check_intno_cfg(INTNO intno)
 Inline void
 disable_int(INTNO intno)
 {
-	sigaddset(&sigmask_disint, intno);
+	sigaddset((sigset_t *)&sigmask_disint, intno);
 	set_sigmask();
 }
 
@@ -383,7 +383,7 @@ disable_int(INTNO intno)
 Inline void
 enable_int(INTNO intno)
 {
-	sigdelset(&sigmask_disint, intno);
+	sigdelset((sigset_t *)&sigmask_disint, intno);
 	set_sigmask();
 }
 
