@@ -1,0 +1,16 @@
+***************
+*** 46,51 ****
+  #define TOPPERS_TARGET_TEST_H
+  
+  #include <macosx.h>
+  #define CPUEXC1					SIGINFO
+  #define RAISE_CPU_EXCEPTION		(raise(SIGINFO))
+  #define PREPARE_RETURN_CPUEXC
+--- 46,52 ----
+  #define TOPPERS_TARGET_TEST_H
+  
+  #include <macosx.h>
++ #define	SIGINFO					SIGPWR	/* A synonym for SIGPWR */
+  #define CPUEXC1					SIGINFO
+  #define RAISE_CPU_EXCEPTION		(raise(SIGINFO))
+  #define PREPARE_RETURN_CPUEXC

@@ -1,8 +1,6 @@
-※Mac OS Xターゲット依存部ユーザーズマニュアルを改変している。
-　修正点は差分を撮って確認願いたい。
 
 		TOPPERS/ASP3カーネル
-		Linuxターゲット依存部 ユーザーズマニュアル
+		Mac OS Xターゲット依存部 ユーザーズマニュアル
 
 		対応バージョン: Release 3.5.0
 		最終更新: 2019年10月6日
@@ -52,7 +50,7 @@
 
 ○目次
 
-１．Linuxターゲット依存部の概要
+１．Mac OS Xターゲット依存部の概要
 	1.1 対応するターゲットシステムとターゲット略称
 	1.2 ターゲット依存部の構成
 	1.3 依存している個別パッケージのバージョン番号
@@ -75,16 +73,16 @@
 	4.2 デバッガの使用方法
 ５．参考情報
 	5.1 システム時刻管理機能テスト用ターゲット依存部
-	5.2 Linuxターゲットへのポーティング
+	5.2 類似のターゲットへのポーティング
 ６．リファレンス
 	6.1 ディレクトリ構成・ファイル構成
 	6.2 バージョン履歴
 
 
-１．Linuxターゲット依存部の概要
+１．Mac OS Xターゲット依存部の概要
 
-Linuxターゲット依存部は，TOPPERS/ASP3カーネルを，Linux上の1つのプ
-ロセスでシミュレーション動作させる環境（これを，ASP3カーネルのLinux
+Mac OS Xターゲット依存部は，TOPPERS/ASP3カーネルを，Mac OS X上の1つのプ
+ロセスでシミュレーション動作させる環境（これを，ASP3カーネルのMac OS X
 シミュレーション環境と呼ぶ）を構成するためのものである．このシミュレー
 ション環境では，ASP3カーネルの各タスクが，プロセス内のユーザレベルスレッ
 ドとして動作する．
@@ -183,10 +181,10 @@ Mac OS Xシミュレーション環境では，TOPPERS/ASP3カーネルおよび
 
 2.2 割込み処理とCPU例外処理に関する規定
 
-Linuxシミュレーション環境では，プロセスに対するシグナルを，割込みま
+Mac OS Xシミュレーション環境では，プロセスに対するシグナルを，割込みま
 たはCPU例外として扱う．ただし，SIGKILLとSIGSTOPの2つのシグナルは，それ
 らに対するシグナルハンドラを登録できないため，割込みまたはCPU例外として
-扱うことができない．また，SIGUSR2も，Linuxシミュレーション環境の実現
+扱うことができない．また，SIGUSR2も，Mac OS Xシミュレーション環境の実現
 のために使用するため，割込みまたはCPU例外として扱うことができない．
 
 これらの3つのシグナルを除くと，いずれのシグナルも，割込みとして扱うこと
@@ -280,7 +278,7 @@ sil_dly_nseは，シミュレーション環境では意味がないことから
 
 3.1 タイマドライバ
 
-タイマドライバは，Linuxのインターバルタイマ機能を使用している．その
+タイマドライバは，Mac OS Xのインターバルタイマ機能を使用している．その
 ため，インターバルタイマを別の目的で使用することはできない．
 
 3.2 シリアルインタフェースドライバ
@@ -322,7 +320,7 @@ SIGIOに対して登録することで，SIGIOシグナル配送時に呼び出�
 
 4.1 システム構築と実行
 
-Linuxシミュレーション環境を構築する手順は，「TOPPERS/ASP3カーネル ユー
+Mac OS Xシミュレーション環境を構築する手順は，「TOPPERS/ASP3カーネル ユー
 ザーズマニュアル」の「３．クイックスタートガイド」の章に記述されている
 通りである．
 
@@ -344,10 +342,10 @@ aspを実行するだけでよい．
 ここで，「handle SIGUSR2 nostop noprint」は，SIGUSR2によってデバッガが
 停止するのを防ぐためのコマンドである．これを省くと，ディスパッチの度に
 デバッガが停止してしまう．また，サンプルプログラム（sample1）を実行する
-際には，CPU例外として用いているSIGPWR(Mac OS Xシミュレーション環境で用いられる SIGINFOの代替)によってデバッガが停止することも
+際には，CPU例外として用いているSIGINFOによってデバッガが停止することも
 防いでおくことが必要である．
 
-	(gdb) handle SIGPWR nostop noprint
+	(gdb) handle SIGINFO nostop noprint
 
 これらのコマンドを，.gdbinitに設定しておくと便利である．
 
@@ -365,18 +363,16 @@ ASP3カーネルのシステム時刻管理機能テストプログラムを実�
 なる（「ユーザーズマニュアル」の「10.4 システム時刻管理機能テストプログ
 ラム」の節を参照）．
 
-Linuxターゲット依存部には，Linux上でシステム時刻管理機能テストを
+Mac OS Xターゲット依存部には，Mac OS X上でシステム時刻管理機能テストを
 行うための，テスト用ターゲット依存部を含んでいる．テスト用ターゲット依
 存部のターゲット略称等は次の通り．
 
-	ターゲット略称：hrt_test_linux_gcc
-	システム略称：hrt_testlinux
-	開発環境略称：gcc
+	ターゲット略称：hrt_test_macosx_xcode
+	システム略称：hrt_testmacosx
+	開発環境略称：xcode
 
-5.2 Linuxターゲットへのポーティング(類似のターゲットへのポーティング)
+5.2 類似のターゲットへのポーティング
 
-Mac OS Xターゲット依存部 ユーザーズマニュアルには、以下の記載がある。
-「
 Max OS Xのカーネルは，BSD UNIXベースであり，Mac OS Xターゲット依存部に
 おいても，Mac OS Xに特有の機能はほとんど使用していない．そのため，他の
 BSD UNIXベースのOSや，Linuxへのポーティングも可能と思われる．
@@ -386,34 +382,21 @@ BSD UNIXベースのOSや，Linuxへのポーティングも可能と思われ�
 てlongjmpしているコードがある．jmp_buf構造体の中でPCやSPの位置はプロセッ
 サやOS（厳密にはライブラリ）によって異なるし，プロセッサによっては他の
 レジスタも設定しなければならない場合がある．
-」
 
-以下の違いに対応して修正した．
-
-* jmp_buf構造体の中でのPCとSPの位置
-* PTR_MANGLEマクロでエンコードして jmp_buf構造体に格納されるPCとSPの値
-* sigset_t 構造体の定義と割り込み要求マスクの情報テーブル
-* バッファオーバーフローチェック _FORTIFY_SOURCE の無効化
-* struct __siginfo と siginfo_t 
-* sense_context(), exc_sense_context()で用いる ucontext_t構造体
-* 64bit環境への対応
-
-※上記の対応のうち，PTR_MANGLEマクロ定義をglibc-2.22ソースコードから流用
-している。 これにより，コード全体がGPLの対象となる可能性がある．
 
 ６．リファレンス
 
 6.1 ディレクトリ構成・ファイル構成
 
-	target/linux_gcc/
+	target/macosx_xcode/
 		E_PACKAGE				簡易パッケージのファイルリスト
 		MANIFEST				個別パッケージのファイルリスト
 		Makefile.target			Makefileのターゲット依存部
 		macosx.h				ターゲットのハードウェア資源の定義
 		tPutLogMacOSX.c			システムログの低レベル出力
 		tPutLogMacOSX.cdl		システムログの低レベル出力のコンポーネント記述
-		tSIOPortMacOSX.cdl		SIOドライバ（Linux用）のコンポーネント記述
-		tSIOPortMacOSXMain.c	SIOドライバ（Linux用）
+		tSIOPortMacOSX.cdl		SIOドライバ（Mac OS X用）のコンポーネント記述
+		tSIOPortMacOSXMain.c	SIOドライバ（Mac OS X用）
 		target.cdl				コンポーネント記述ファイルのターゲット依存部
 		target_cfg1_out.h		cfg1_out.cのリンクに必要なスタブの定義
 		target_check.trb		kernel_check.trbのターゲット依存部
@@ -436,7 +419,7 @@ BSD UNIXベースのOSや，Linuxへのポーティングも可能と思われ�
 		target_user.txt			ターゲット依存部のユーザーズマニュアル
 		tecs_termios.h			TECSのためのtermios.hの代替ファイル
 
-	target/test_hrt_linux_gcc/
+	target/test_hrt_macosx_xcode/
 		MANIFEST				個別パッケージのファイルリスト
 		Makefile.target			Makefileのターゲット依存部
 		target_kernel.h			kernel.hのターゲット依存部
@@ -454,7 +437,5 @@ BSD UNIXベースのOSや，Linuxへのポーティングも可能と思われ�
 	2018年4月19日	Release	3.3.0
 	2019年3月20日	Release	3.4.0
 	2019年10月6日	Release	3.5.0
-
-	2016年2月26日	Release	3.0.0L		最初のLinuxターゲット依存部版一般公開
 
 以上

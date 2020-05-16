@@ -3,9 +3,9 @@
  *      Toyohashi Open Platform for Embedded Real-Time Systems/
  *      Advanced Standard Profile Kernel
  * 
- *  Copyright (C) 2000-2003 by Embedded and Real-Time Systems Laboratory
- *                              Toyohashi Univ. of Technology, JAPAN
- *  Copyright (C) 2004-2017 by Embedded and Real-Time Systems Laboratory
+ *  Copyright (C) 2015 by Ushio Laboratory
+ *              Graduate School of Engineering Science, Osaka Univ., JAPAN
+ *  Copyright (C) 2015,2016 by Embedded and Real-Time Systems Laboratory
  *              Graduate School of Information Science, Nagoya Univ., JAPAN
  * 
  *  上記著作権者は，以下の(1)〜(4)の条件を満たす場合に限り，本ソフトウェ
@@ -37,62 +37,54 @@
  *  アの利用により直接的または間接的に生じたいかなる損害に関しても，そ
  *  の責任を負わない．
  * 
- *  $Id: target_kernel.h 1105 2018-12-02 09:22:47Z ertl-hiro $
+ *  $Id: target.cdl 1073 2018-11-25 01:30:09Z ertl-hiro $
  */
 
 /*
- *		kernel.hのターゲット依存部（Mac OS X用）
- *
- *  このインクルードファイルは，kernel.hでインクルードされる．他のファ
- *  イルから直接インクルードすることはない．このファイルをインクルード
- *  する前に，t_stddef.hがインクルードされるので，それらに依存してもよ
- *  い．
+ *		コンポーネント記述ファイルのターゲット依存部（Mac OS X用）
  */
-
-#ifndef TOPPERS_TARGET_KERNEL_H
-#define TOPPERS_TARGET_KERNEL_H
 
 /*
- *  割込み優先度の範囲
- *
- *  TMIN_INTPRIの定義を変更することで，どのレベルよりも高い割込み優先度
- *  を持つものをカーネル管理外の割込みとするかを変更できる．
- *
- *  TMIN_INTPRIに設定できる値は，-6〜-1の範囲である．例えばTMIN_INTPRI
- *  を-5に設定すると，レベル7（NMI）とレベル6の割込みがカーネル管理外と
- *  なる．TMIN_INTPRIを-6に設定すると，レベル7の割込み（NMI）以外にカー
- *  ネル管理外の割込みを設けないことになる．
+ *  タスクのスタックサイズのデフォルト
  */
-#ifndef TMIN_INTPRI
-#define TMIN_INTPRI		(-6)		/* 割込み優先度の最小値（最高値）*/
-#endif /* TMIN_INTPRI */
-#define TMAX_INTPRI		(-1)		/* 割込み優先度の最大値（最低値） */
+const size_t DefaultTaskStackSize = 131072;		/* スタックサイズ（128KB）*/
 
 /*
- * workround against a  missing definition of SIGIO
- * in ${project}/gen/tInterruptRequest_tecsgen.c
+ *  システムログタスクのスタックサイズの定義
  */
-#ifndef	SIGIO
-#define	SIGIO	29	/* see <signal.h> */
-#endif
+const size_t LogTaskStackSize = DefaultTaskStackSize;
 
 /*
- *  ターゲット依存部でサポートできる機能
+ *  カーネル起動メッセージに関する定義
  */
-#define TOPPERS_TARGET_SUPPORT_DIS_INT		/* dis_int */
-#define TOPPERS_TARGET_SUPPORT_ENA_INT		/* ena_int */
-#define TOPPERS_TARGET_SUPPORT_RAS_INT		/* ras_int */
-#define TOPPERS_TARGET_SUPPORT_PRB_INT		/* prb_int */
-#define TOPPERS_TARGET_SUPPORT_OVRHDR		/* オーバランハンドラ */
+const char *const BannerTargetName = "Mac OS X";		/* ターゲット名 */
+const char *const BannerCopyrightNotice = "";			/* 著作権表示 */
 
 /*
- *  高分解能タイマのタイマ周期
+ *  ターゲット依存のセルタイプの定義
  */
-/* TCYC_HRTCNTは定義しない．*/
+import("tPutLogMacOSX.cdl");
+import("tSIOPortMacOSX.cdl");
 
 /*
- *  高分解能タイマのカウント値の進み幅
+ *  UNIX用ノンブロッキングI/Oサポートのための割込み要求ライン
  */
-#define TSTEP_HRTCNT	1U
+cell tInterruptRequest SIGIOInterruptRequest {
+	interruptNumber   = C_EXP("SIGIO");
+	interruptPriority = C_EXP("TMAX_INTPRI");
+	attribute         = C_EXP("TA_ENAINT | TA_EDGE");
+};
 
-#endif /* TOPPERS_TARGET_KERNEL_H */
+/*
+ *  シリアルインタフェースドライバのターゲット依存部の組み上げ記述
+ */
+cell tSIOPortMacOSX SIOPortTarget1 {
+	/* 属性の設定 */
+	interruptNumber = C_EXP("SIGIO");
+};
+
+/*
+ *  低レベル出力の組み上げ記述
+ */
+cell tPutLogMacOSX PutLogTarget {
+};

@@ -3,9 +3,7 @@
  *      Toyohashi Open Platform for Embedded Real-Time Systems/
  *      Advanced Standard Profile Kernel
  * 
- *  Copyright (C) 2000-2003 by Embedded and Real-Time Systems Laboratory
- *                              Toyohashi Univ. of Technology, JAPAN
- *  Copyright (C) 2004-2017 by Embedded and Real-Time Systems Laboratory
+ *  Copyright (C) 2006-2017 by Embedded and Real-Time Systems Laboratory
  *              Graduate School of Information Science, Nagoya Univ., JAPAN
  * 
  *  上記著作権者は，以下の(1)〜(4)の条件を満たす場合に限り，本ソフトウェ
@@ -37,62 +35,47 @@
  *  アの利用により直接的または間接的に生じたいかなる損害に関しても，そ
  *  の責任を負わない．
  * 
- *  $Id: target_kernel.h 1105 2018-12-02 09:22:47Z ertl-hiro $
+ *  $Id: target_test.h 1172 2019-03-11 04:45:33Z ertl-hiro $
  */
 
 /*
- *		kernel.hのターゲット依存部（Mac OS X用）
- *
- *  このインクルードファイルは，kernel.hでインクルードされる．他のファ
- *  イルから直接インクルードすることはない．このファイルをインクルード
- *  する前に，t_stddef.hがインクルードされるので，それらに依存してもよ
- *  い．
+ *		テストプログラムのターゲット依存部（Mac OS X用）
  */
 
-#ifndef TOPPERS_TARGET_KERNEL_H
-#define TOPPERS_TARGET_KERNEL_H
+#ifndef TOPPERS_TARGET_TEST_H
+#define TOPPERS_TARGET_TEST_H
+
+#include <macosx.h>
 
 /*
- *  割込み優先度の範囲
- *
- *  TMIN_INTPRIの定義を変更することで，どのレベルよりも高い割込み優先度
- *  を持つものをカーネル管理外の割込みとするかを変更できる．
- *
- *  TMIN_INTPRIに設定できる値は，-6〜-1の範囲である．例えばTMIN_INTPRI
- *  を-5に設定すると，レベル7（NMI）とレベル6の割込みがカーネル管理外と
- *  なる．TMIN_INTPRIを-6に設定すると，レベル7の割込み（NMI）以外にカー
- *  ネル管理外の割込みを設けないことになる．
+ *  サンプルプログラム／テストプログラムで設定するスタックサイズ
  */
-#ifndef TMIN_INTPRI
-#define TMIN_INTPRI		(-6)		/* 割込み優先度の最小値（最高値）*/
-#endif /* TMIN_INTPRI */
-#define TMAX_INTPRI		(-1)		/* 割込み優先度の最大値（最低値） */
+#define	STACK_SIZE				SIGSTKSZ
 
 /*
- * workround against a  missing definition of SIGIO
- * in ${project}/gen/tInterruptRequest_tecsgen.c
+ *  サンプルプログラム／テストプログラムで使用するCPU例外に関する定義
  */
-#ifndef	SIGIO
-#define	SIGIO	29	/* see <signal.h> */
-#endif
+#define CPUEXC1					SIGINFO
+#define RAISE_CPU_EXCEPTION		(raise(SIGINFO))
+#define PREPARE_RETURN_CPUEXC
 
 /*
- *  ターゲット依存部でサポートできる機能
+ *  サンプルプログラム／テストプログラムで使用する割込みに関する定義
  */
-#define TOPPERS_TARGET_SUPPORT_DIS_INT		/* dis_int */
-#define TOPPERS_TARGET_SUPPORT_ENA_INT		/* ena_int */
-#define TOPPERS_TARGET_SUPPORT_RAS_INT		/* ras_int */
-#define TOPPERS_TARGET_SUPPORT_PRB_INT		/* prb_int */
-#define TOPPERS_TARGET_SUPPORT_OVRHDR		/* オーバランハンドラ */
+#define INTNO1					SIGUSR1
+#define INTNO1_INTATR			TA_ENAINT|TA_EDGE
+#define INTNO1_INTPRI			(-5)
+#define intno1_clear()
 
 /*
- *  高分解能タイマのタイマ周期
+ *  サンプルプログラムのためのその他の定義
  */
-/* TCYC_HRTCNTは定義しない．*/
+#define LOOP_REF				ULONG_C(10000000)
+#define MEASURE_TWICE
 
 /*
- *  高分解能タイマのカウント値の進み幅
+ *  テストプログラムで使用する時間パラメータに関する定義
  */
-#define TSTEP_HRTCNT	1U
+#define TEST_TIME_CP	1000U
 
-#endif /* TOPPERS_TARGET_KERNEL_H */
+#endif /* TOPPERS_TARGET_TEST_H */

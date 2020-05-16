@@ -1,0 +1,22 @@
+***************
+*** 1,9 ****
+- PACKAGE asp3_target_macosx_xcode
+  VERSION 3.0.0
+  
+  E_PACKAGE
+  MANIFEST
+  Makefile.target
+  macosx.h
+  tPutLogMacOSX.c
+  tPutLogMacOSX.cdl
+--- 1,10 ----
++ PACKAGE asp3_target_linux_gcc
+  VERSION 3.0.0
+  
+  E_PACKAGE
+  MANIFEST
+  Makefile.target
++ glibc_sysdep.h
+  macosx.h
+  tPutLogMacOSX.c
+  tPutLogMacOSX.cdl
