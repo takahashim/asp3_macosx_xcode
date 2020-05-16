@@ -66,7 +66,7 @@
 /*
  *  ターゲットシステムのOS依存の定義
  */
-#include "macosx.h"
+#include "target_linux.h"
 
 /*
  *  ターゲット定義のオブジェクト属性

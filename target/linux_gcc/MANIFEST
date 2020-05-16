@@ -5,7 +5,7 @@ E_PACKAGE
 MANIFEST
 Makefile.target
 glibc_sysdep.h
-macosx.h
+target_linux.h
 tPutLogMacOSX.c
 tPutLogMacOSX.cdl
 tSIOPortMacOSX.cdl
@@ -32,4 +32,4 @@ target_unrename.h
 target_user.txt
 tecs_termios.h
 
-INCLUDE ../simtimer_macosx_xcode/MANIFEST
+INCLUDE ../simtimer_linux_gcc/MANIFEST

@@ -14,6 +14,6 @@
 /*
  *  ターゲットシステムのOS依存の定義
  */
-#include "macosx.h"
+#include "target_linux.h"
 
 #endif /* TOPPERS_TARGET_SYSSVC_H */

@@ -46,7 +46,7 @@
 #ifndef TOPPERS_TARGET_TEST_H
 #define TOPPERS_TARGET_TEST_H
 
-#include <macosx.h>
+#include <target_linux.h>
 
 /*
  *  サンプルプログラム／テストプログラムで設定するスタックサイズ

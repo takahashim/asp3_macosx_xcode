@@ -48,7 +48,7 @@
 #define TOPPERS_TARGET_TIMER_H
 
 #include <sil.h>
-#include "macosx.h"
+#include "target_linux.h"
 #ifndef TOPPERS_MACRO_ONLY
 #include <sys/time.h>
 #endif /* TOPPERS_MACRO_ONLY */

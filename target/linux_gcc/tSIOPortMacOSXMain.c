@@ -42,7 +42,7 @@
  *		シリアルインタフェースドライバのターゲット依存部（Mac OS X用）
  */
 
-#include "macosx.h"
+#include "target_linux.h"
 #include <t_stddef.h>
 #include <t_syslog.h>
 #include <errno.h>

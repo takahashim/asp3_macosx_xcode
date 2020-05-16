@@ -48,7 +48,7 @@
 #ifndef TOPPERS_TARGET_TIMER_H
 #define TOPPERS_TARGET_TIMER_H
 
-#include "macosx.h"
+#include "target_linux.h"
 
 /*
  *  タイマ割込みハンドラ登録のための定数

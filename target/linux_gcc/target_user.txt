@@ -199,9 +199,9 @@ Linuxシミュレーション環境では，プロセスに対するシグナル
 
 割込みハンドラ番号（inhno），割込み番号（intno），CPU例外ハンドラ番号
 （excno）の値は，いずれも，シグナル番号と一致させている．シグナル名とシ
-グナル番号は，/usr/include/sys/signal.hに定義されている．なお，macosx.h
+グナル番号は，/usr/include/sys/signal.hに定義されている．なお，target_linux.h
 からこのヘッダファイルをインクルードしているため，シグナル名を用いる場
-合には，macosx.hをインクルードすると良い．
+合には，target_linux.hをインクルードすると良い．
 
 割込み優先度としては，-7〜-1の7段階をサポートしているが，-7はNMI扱いと
 しており，カーネル管理の割込みとできるのは，-6〜-1の範囲である．デフォ
@@ -409,7 +409,7 @@ BSD UNIXベースのOSや，Linuxへのポーティングも可能と思われ�
 		E_PACKAGE				簡易パッケージのファイルリスト
 		MANIFEST				個別パッケージのファイルリスト
 		Makefile.target			Makefileのターゲット依存部
-		macosx.h				ターゲットのハードウェア資源の定義
+		target_linux.h				ターゲットのハードウェア資源の定義
 		tPutLogMacOSX.c			システムログの低レベル出力
 		tPutLogMacOSX.cdl		システムログの低レベル出力のコンポーネント記述
 		tSIOPortMacOSX.cdl		SIOドライバ（Linux用）のコンポーネント記述
