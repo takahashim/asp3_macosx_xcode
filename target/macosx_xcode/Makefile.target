@@ -38,7 +38,7 @@ OBJDUMP = gobjdump
 #  カーネルを関数単位でコンパイルする時には，未使用関数の警告を抑止する．
 #
 INCLUDES := $(INCLUDES) -I$(TARGETDIR) -I$(TOOLDIR)
-COPTS := -m32 -Werror -arch i386 $(COPTS)
+COPTS := -m32 -Werror $(COPTS)
 ifdef KERNEL_FUNCOBJS
 	COPTS := -Wno-unused-function $(COPTS)
 endif
