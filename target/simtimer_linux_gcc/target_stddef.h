@@ -54,7 +54,7 @@
 /*
  *  ターゲットを識別するためのマクロの定義
  */
-#define TOPPERS_MACOSX				/* システム略称 */
+#define TOPPERS_LINUX				/* システム略称 */
 
 /*
  *  開発環境で共通な定義

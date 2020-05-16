@@ -35,15 +35,15 @@
  *  アの利用により直接的または間接的に生じたいかなる損害に関しても，そ
  *  の責任を負わない．
  * 
- *  $Id: macosx.h 932 2018-03-27 17:46:53Z ertl-hiro $
+ *  $Id: target_linux.h 932 2018-03-27 17:46:53Z ertl-hiro $
  */
 
 /*
- *		Mac OS XのOS資源の定義
+ *		LinuxのOS資源の定義
  */
 
-#ifndef TOPPERS_MACOSX_H
-#define TOPPERS_MACOSX_H
+#ifndef TOPPERS_TARGET_LINUX_H
+#define TOPPERS_TARGET_LINUX_H
 
 /*
  *  シグナル番号の定義
@@ -53,4 +53,4 @@
 #include <signal.h>					/* tecsgenが解釈できないためスキップ */
 #endif /* TECSGEN */
 #endif /* TOPPERS_MACRO_ONLY */
-#endif /* TOPPERS_MACOSX_H */
+#endif /* TOPPERS_TARGET_LINUX_H */

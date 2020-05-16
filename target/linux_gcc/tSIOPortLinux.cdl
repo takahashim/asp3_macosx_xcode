@@ -37,23 +37,23 @@
  *  アの利用により直接的または間接的に生じたいかなる損害に関しても，そ
  *  の責任を負わない．
  * 
- *  $Id: tSIOPortMacOSX.cdl 1095 2018-11-28 00:57:28Z ertl-hiro $
+ *  $Id: tSIOPortLinux.cdl 1095 2018-11-28 00:57:28Z ertl-hiro $
  */
 
 /*
- *		シリアルインタフェースドライバのターゲット依存部（Mac OS X用）
+ *		シリアルインタフェースドライバのターゲット依存部（Linux用）
  *		のコンポーネント記述
  */
 
 /*
- *  Mac OS X に関する定義
+ *  Linux に関する定義
  */
 import_C("tecs_termios.h");
 
 /*
  *  SIOドライバの本体のセルタイプ
  */
-celltype tSIOPortMacOSXMain {
+celltype tSIOPortLinuxMain {
 	/*
 	 *  シリアルインタフェースドライバとの結合
 	 */
@@ -92,7 +92,7 @@ celltype tSIOPortMacOSXMain {
  *  SIOドライバ（複合コンポーネント）のセルタイプ
  */
 [active]
-composite tSIOPortMacOSX {
+composite tSIOPortLinux {
 	/*
 	 *  シリアルインタフェースドライバとの結合
 	 */
@@ -111,7 +111,7 @@ composite tSIOPortMacOSX {
 	/*
 	 *  SIOドライバの本体
 	 */
-	cell tSIOPortMacOSXMain SIOPortMain {
+	cell tSIOPortLinuxMain SIOPortMain {
 		path     = composite.path;
 		ciSIOCBR => composite.ciSIOCBR;
 	};

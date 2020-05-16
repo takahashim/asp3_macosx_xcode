@@ -41,7 +41,7 @@
 # 
 
 #
-#		パス2の生成スクリプトのターゲット依存部（Mac OS X用）
+#		パス2の生成スクリプトのターゲット依存部（Linux用）
 #
 
 #
@@ -82,7 +82,7 @@ IncludeTrb("kernel/kernel.trb")
 #
 #  ターゲット依存の定義の生成
 #
-$kernelCfgC.comment_header("Target-dependent Definitions (Mac OS X)")
+$kernelCfgC.comment_header("Target-dependent Definitions (Linux)")
 
 #
 #  マスクできないシグナルとカーネルが使うシグナルに関する設定

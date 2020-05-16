@@ -41,7 +41,7 @@
  */
 
 /*
- *		タイマドライバ（Mac OS X用）
+ *		タイマドライバ（Linux用）
  */
 
 #ifndef TOPPERS_TARGET_TIMER_H

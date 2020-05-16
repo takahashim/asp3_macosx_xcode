@@ -3,8 +3,6 @@
  *      Toyohashi Open Platform for Embedded Real-Time Systems/
  *      Advanced Standard Profile Kernel
  * 
- *  Copyright (C) 2015 by Ushio Laboratory
- *              Graduate School of Engineering Science, Osaka Univ., JAPAN
  *  Copyright (C) 2015,2016 by Embedded and Real-Time Systems Laboratory
  *              Graduate School of Information Science, Nagoya Univ., JAPAN
  * 
@@ -37,17 +35,21 @@
  *  アの利用により直接的または間接的に生じたいかなる損害に関しても，そ
  *  の責任を負わない．
  * 
- *  $Id: tPutLogMacOSX.cdl 509 2016-01-12 06:06:14Z ertl-hiro $
+ *  $Id: tPutLogLinux.c 509 2016-01-12 06:06:14Z ertl-hiro $
  */
 
 /*
- *		システムログの低レベル出力のコンポーネント記述
+ *             システムログの低レベル出力
  */
 
+#include <unistd.h>
+#include "tPutLogLinux_tecsgen.h"
+
 /*
- *  システムログの低レベル出力のセルタイプ
+ *  システムログの低レベル出力のための文字出力（受け口関数）
  */
-[singleton]
-celltype tPutLogMacOSX {
-	entry	sPutLog		ePutLog;
-};
+void
+ePutLog_putChar(char c)
+{
+       write(STDERR_FILENO, &c, 1);
+}

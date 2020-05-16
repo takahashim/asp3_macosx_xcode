@@ -7,7 +7,7 @@
 		対応バージョン: Release 3.5.0
 		最終更新: 2019年10月6日
 
-このドキュメントは，TOPPERS/ASP3カーネルのMac OS Xターゲット依存部を使
+このドキュメントは，TOPPERS/ASP3カーネルのLinuxターゲット依存部を使
 用するために必要な事項を説明するものである．
 
 ----------------------------------------------------------------------
@@ -218,7 +218,7 @@ NMI以外にカーネル管理外の割込みを設けないことを意味し�
 
 カーネル管理外の割込みハンドラは，カーネル内の割込み出入口処理を経由せ
 ずに呼び出される．すなわち，カーネル管理外の割込みハンドラの記述方法は，
-Mac OS Xのシグナルハンドラと同じである．
+Linuxのシグナルハンドラと同じである．
 
 dis_int，ena_int，ras_int，prb_intは，NMI以外の割込み要求ラインに対し
 てサポートしている．逆に言うと，割込み優先度が-7（NMI）の割込み要求ラ
@@ -303,7 +303,7 @@ sil_dly_nseは，シミュレーション環境では意味がないことから
 
 3.4 ノンブロッキングI/Oサポートモジュール
 
-Mac OS Xシミュレーション環境で，UNIXのノンブロッキングI/O機能の使用をサ
+Linuxシミュレーション環境で，UNIXのノンブロッキングI/O機能の使用をサ
 ポートするために，target.cdlにおいて，SIGIOに対する割込み要求ラインの属
 性を設定している．
 
@@ -410,10 +410,10 @@ BSD UNIXベースのOSや，Linuxへのポーティングも可能と思われ�
 		MANIFEST				個別パッケージのファイルリスト
 		Makefile.target			Makefileのターゲット依存部
 		target_linux.h				ターゲットのハードウェア資源の定義
-		tPutLogMacOSX.c			システムログの低レベル出力
-		tPutLogMacOSX.cdl		システムログの低レベル出力のコンポーネント記述
-		tSIOPortMacOSX.cdl		SIOドライバ（Linux用）のコンポーネント記述
-		tSIOPortMacOSXMain.c	SIOドライバ（Linux用）
+		tPutLogLinux.c			システムログの低レベル出力
+		tPutLogLinux.cdl		システムログの低レベル出力のコンポーネント記述
+		tSIOPortLinux.cdl		SIOドライバ（Linux用）のコンポーネント記述
+		tSIOPortLinuxMain.c	SIOドライバ（Linux用）
 		target.cdl				コンポーネント記述ファイルのターゲット依存部
 		target_cfg1_out.h		cfg1_out.cのリンクに必要なスタブの定義
 		target_check.trb		kernel_check.trbのターゲット依存部

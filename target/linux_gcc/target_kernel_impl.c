@@ -39,7 +39,7 @@
  */
 
 /*
- *		カーネルのターゲット依存部（Mac OS X用）
+ *		カーネルのターゲット依存部（Linux用）
  */
 
 #include "kernel_impl.h"

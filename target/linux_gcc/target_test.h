@@ -39,7 +39,7 @@
  */
 
 /*
- *		テストプログラムのターゲット依存部（Mac OS X用）
+ *		テストプログラムのターゲット依存部（Linux用）
  */
 
 #ifndef TOPPERS_TARGET_TEST_H

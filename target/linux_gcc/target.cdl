@@ -41,7 +41,7 @@
  */
 
 /*
- *		コンポーネント記述ファイルのターゲット依存部（Mac OS X用）
+ *		コンポーネント記述ファイルのターゲット依存部（Linux用）
  */
 
 /*
@@ -63,8 +63,8 @@ const char *const BannerCopyrightNotice = "";			/* 著作権表示 */
 /*
  *  ターゲット依存のセルタイプの定義
  */
-import("tPutLogMacOSX.cdl");
-import("tSIOPortMacOSX.cdl");
+import("tPutLogLinux.cdl");
+import("tSIOPortLinux.cdl");
 
 /*
  *  UNIX用ノンブロッキングI/Oサポートのための割込み要求ライン
@@ -78,7 +78,7 @@ cell tInterruptRequest SIGIOInterruptRequest {
 /*
  *  シリアルインタフェースドライバのターゲット依存部の組み上げ記述
  */
-cell tSIOPortMacOSX SIOPortTarget1 {
+cell tSIOPortLinux SIOPortTarget1 {
 	/* 属性の設定 */
 	interruptNumber = C_EXP("SIGIO");
 };
@@ -86,5 +86,5 @@ cell tSIOPortMacOSX SIOPortTarget1 {
 /*
  *  低レベル出力の組み上げ記述
  */
-cell tPutLogMacOSX PutLogTarget {
+cell tPutLogLinux PutLogTarget {
 };
